@@ -1,85 +1,200 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+Contatos
+JSON para Criar um Contato (POST /contacts)
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Para criar um novo contato, envie os seguintes dados no corpo da requisição:
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+json
+Copiar código
+{
+  "name": "Lucas Silva",
+  "email": "lucas.silva@example.com",
+  "phone": "123456789"
+}
+Requisição para Listar Todos os Contatos (GET /contacts)
 
-## Description
+Esse endpoint não requer um corpo no JSON. Faça uma requisição GET para a URL:
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+URL: http://localhost:3001/contacts
+Método: GET
+Requisição para Obter um Contato Específico (GET /contacts/{id})
 
-## Project setup
+Para obter um contato específico, substitua {id} pelo ID do contato desejado. Não é necessário um corpo no JSON.
 
-```bash
-$ npm install
-```
+URL: http://localhost:3001/contacts/{id} (substitua {id} pelo ID real do contato)
+Método: GET
+JSON para Atualizar um Contato (PUT /contacts/{id})
 
-## Compile and run the project
+Para atualizar um contato existente, envie os dados atualizados no corpo da requisição:
 
-```bash
-# development
-$ npm run start
+json
+Copiar código
+{
+  "name": "Lucas Silva Atualizado",
+  "email": "lucas.silva.atualizado@example.com",
+  "phone": "987654321"
+}
+Requisição para Deletar um Contato (DELETE /contacts/{id})
 
-# watch mode
-$ npm run start:dev
+Para deletar um contato específico, forneça o ID do contato. Este endpoint não requer um corpo no JSON.
 
-# production mode
-$ npm run start:prod
-```
+URL: http://localhost:3001/contacts/{id} (substitua {id} pelo ID real do contato)
+Método: DELETE
+Respostas Esperadas para Contatos
+Criar um Contato:
+Se a criação for bem-sucedida, a resposta será:
 
-## Run tests
+json
+Copiar código
+{
+  "message": "Contato criado com sucesso."
+}
+Listar Todos os Contatos:
+A resposta incluirá uma lista de contatos:
 
-```bash
-# unit tests
-$ npm run test
+json
+Copiar código
+[
+  {
+    "id": 1,
+    "name": "Lucas Silva",
+    "email": "lucas.silva@example.com",
+    "phone": "123456789",
+    "createdAt": "2024-10-18T12:00:00.000Z",
+    "updatedAt": "2024-10-18T12:00:00.000Z"
+  },
+  {
+    "id": 2,
+    "name": "Ana Paula",
+    "email": "ana.paula@example.com",
+    "phone": "987654321",
+    "createdAt": "2024-10-18T12:00:00.000Z",
+    "updatedAt": "2024-10-18T12:00:00.000Z"
+  }
+]
+Obter um Contato Específico:
+A resposta incluirá os detalhes do contato solicitado:
 
-# e2e tests
-$ npm run test:e2e
+json
+Copiar código
+{
+  "id": 1,
+  "name": "Lucas Silva",
+  "email": "lucas.silva@example.com",
+  "phone": "123456789",
+  "createdAt": "2024-10-18T12:00:00.000Z",
+  "updatedAt": "2024-10-18T12:00:00.000Z"
+}
+Atualizar um Contato:
+Se a atualização for bem-sucedida, a resposta será:
 
-# test coverage
-$ npm run test:cov
-```
+json
+Copiar código
+{
+  "message": "Contato atualizado com sucesso."
+}
+Deletar um Contato:
+Se a exclusão for bem-sucedida, a resposta será:
 
-## Resources
+json
+Copiar código
+{
+  "message": "Contato deletado com sucesso."
+}
+Agendamentos
+JSON para Criar um Agendamento (POST /schedules)
 
-Check out a few resources that may come in handy when working with NestJS:
+Para criar um novo agendamento, envie os seguintes dados no corpo da requisição:
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+json
+Copiar código
+{
+  "userId": 1,
+  "date": "2024-10-20T14:00:00Z"
+}
+Requisição para Listar Todos os Agendamentos (GET /schedules)
 
-## Support
+Faça uma requisição GET para a URL:
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+URL: http://localhost:3001/schedules
+Método: GET
+Requisição para Obter um Agendamento Específico (GET /schedules/{id})
 
-## Stay in touch
+Para obter um agendamento específico, substitua {id} pelo ID do agendamento desejado. Não é necessário um corpo no JSON.
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+URL: http://localhost:3001/schedules/{id} (substitua {id} pelo ID real do agendamento)
+Método: GET
+JSON para Atualizar um Agendamento (PUT /schedules/{id})
 
-## License
+Para atualizar um agendamento existente, envie os dados atualizados no corpo da requisição:
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+json
+Copiar código
+{
+  "userId": 1,
+  "date": "2024-10-21T16:00:00Z"
+}
+Requisição para Deletar um Agendamento (DELETE /schedules/{id})
+
+Para deletar um agendamento específico, forneça o ID do agendamento. Este endpoint não requer um corpo no JSON.
+
+URL: http://localhost:3001/schedules/{id} (substitua {id} pelo ID real do agendamento)
+Método: DELETE
+Respostas Esperadas para Agendamentos
+Criar um Agendamento:
+Se a criação for bem-sucedida, a resposta será:
+
+json
+Copiar código
+{
+  "message": "Agendamento criado com sucesso."
+}
+Listar Todos os Agendamentos:
+A resposta incluirá uma lista de agendamentos:
+
+json
+Copiar código
+[
+  {
+    "id": 1,
+    "userId": 1,
+    "date": "2024-10-20T14:00:00Z",
+    "createdAt": "2024-10-18T12:00:00.000Z",
+    "updatedAt": "2024-10-18T12:00:00.000Z"
+  },
+  {
+    "id": 2,
+    "userId": 2,
+    "date": "2024-10-21T16:00:00Z",
+    "createdAt": "2024-10-18T12:00:00.000Z",
+    "updatedAt": "2024-10-18T12:00:00.000Z"
+  }
+]
+Obter um Agendamento Específico:
+A resposta incluirá os detalhes do agendamento solicitado:
+
+json
+Copiar código
+{
+  "id": 1,
+  "userId": 1,
+  "date": "2024-10-20T14:00:00Z",
+  "createdAt": "2024-10-18T12:00:00.000Z",
+  "updatedAt": "2024-10-18T12:00:00.000Z"
+}
+Atualizar um Agendamento:
+Se a atualização for bem-sucedida, a resposta será:
+
+json
+Copiar código
+{
+  "message": "Agendamento atualizado com sucesso."
+}
+Deletar um Agendamento:
+Se a exclusão for bem-sucedida, a resposta será:
+
+json
+Copiar código
+{
+  "message": "Agendamento deletado com sucesso."
+}
+Esses exemplos devem ajudar a testar suas rotas de contatos e agendamentos! Se precisar de mais alguma coisa, é só avisar.
